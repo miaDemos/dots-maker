@@ -2,9 +2,10 @@
   <div
     ref="background"
     class="background"
-    :style="{ backgroundImage: `url(${url})` }"
-    @dblclick="handleMapClcik"
+    :style="{ backgroundImage: `url(${url})`,width,height }"
+    @dblclick="handleMapClick"
   >
+    
     <Moveable
       class="dot"
       :class="{ active: index === activeIndex }"
@@ -42,7 +43,7 @@ export default {
   components: {
     Moveable
   },
-  props: ["url"],
+  props: ["url","width","height"],
   data() {
     return {
       dots: [],
@@ -78,7 +79,7 @@ export default {
     }
   },
   methods: {
-    handleMapClcik(e) {
+    handleMapClick(e) {
       const { offsetX, offsetY } = e;
 
       const {offsetWidth, offsetHeight} = this.$refs.background
@@ -95,7 +96,6 @@ export default {
 
     handleDotClick (e, index) {
       this.activeIndex = index
-
       this.$refs.input[index].focus()
     },
 
